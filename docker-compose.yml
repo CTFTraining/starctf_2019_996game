@@ -1,12 +1,21 @@
 version: '2.0'
 
+networks:
+  game_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.91.0.0/16
+
 services:
   mongo:
     image: 'mongo:3.4.4'
     ports:
       - '127.0.0.1:27017:27017'
-    volumes:
-      - 'mongo:/data/db'
+    networks:
+      game_network:
+        aliases:
+          - db
 
   phaserquest:
     tty: true
@@ -19,6 +28,12 @@ services:
     image: ctftraining/starctf_2019_996game
     command: pm2-runtime /root/processes.yml
     ports:
-      - '127.0.0.1:8081:10081'
+      - '127.0.0.1:8081:8081'
+    environment:
+      - FLAG=flag{test_flag}
+    networks:
+      game_network:
+        aliases:
+          - web
 volumes:
   mongo:

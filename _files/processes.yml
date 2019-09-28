@@ -7,4 +7,4 @@ apps:
     gid: 'ctf'
     output: '/root/out'
     error: '/root/error'
-    args: ["-p 10081","--mongoServer=mongo","--waitForDatabase=5000"]
+    args: ["-p 8081","--mongoServer=db","--waitForDatabase=5000"]

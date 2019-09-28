@@ -1,16 +1,18 @@
-FROM node:boron
+FROM node:lts-alpine
 
 COPY phaserquest/ /usr/src/app
 COPY _files/ /tmp/
 
-RUN apt-get update && \
-    apt-get -y upgrade && \
-    npm install && \
-    npm install pm2 -g && \
-    useradd -m ctf && \
+RUN cd /usr/src/app && \
+    npm install -g cnpm --registry=https://registry.npm.taobao.org && \
+    cnpm install && \
+    cnpm install pm2 -g && \
+    addgroup -S ctf && adduser -S ctf -G ctf && \
     mv /tmp/processes.yml /root/processes.yml && \
     mv /tmp/flag /flag && \
     mv /tmp/readflag /readflag && \
+    mv /tmp/start.sh /start.sh && \
+    chmod +x /start.sh && \
     chmod 555 /readflag && \
     chmod u+s /readflag && \
     chmod 500 /flag && \
@@ -19,4 +21,6 @@ RUN apt-get update && \
 
 WORKDIR /usr/src/app
 
-EXPOSE 10081
+EXPOSE 8081
+
+ENTRYPOINT ["/start.sh"]
