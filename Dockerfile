@@ -5,6 +5,7 @@ COPY _files/ /tmp/
 
 RUN cd /usr/src/app && \
     npm install -g cnpm --registry=https://registry.npm.taobao.org && \
+    apk add perl && \
     cnpm install && \
     cnpm install pm2 -g && \
     addgroup -S ctf && adduser -S ctf -G ctf && \
